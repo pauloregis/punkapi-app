@@ -1,0 +1,46 @@
+.filter {
+  background-color: #fff;
+  border-radius: 3px;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,.08);
+  margin-top: 15px;
+}
+
+.filter__item {
+  border-top: 1px solid rgba(0,0,0,0.15);
+  padding: 15px 15px;
+
+  .rc-slider-handle {
+    border: 2px solid rgba(0,0,0,1);
+    background: #FFDD00;
+    border-radius: 4px;
+  }
+  .rc-slider-track {
+    background-color: rgba(0,0,0,0.75);
+  }
+  .rc-slider-step, .rc-slider-track, .rc-slider-rail {
+    height: 2px;
+  }
+}
+
+.filter__item-search {
+  @extend .filter__item;
+
+  input {
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 10px;
+  }
+}
+
+.filter__title {
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.filter__range__values {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  margin: 10px 0;
+}
