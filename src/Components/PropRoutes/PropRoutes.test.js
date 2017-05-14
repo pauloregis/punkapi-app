@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { expect } from 'chai';
-import PropRoutes from './PropRoutes';
+import PropRoutes from './index';
 import { Route } from 'react-router-dom';
 
 describe('<PropRoutes />', () => {

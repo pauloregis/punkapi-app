@@ -11,27 +11,25 @@ const BeersList = ({
                      beers,
                      queryFilter,
                      changeFilter,
-                     resetFilter,
                      handlePagination,
                      pagination
 }) => (
   <Container>
     <Row>
-      <Col sm="3">
+      <Col sm="12" md="3">
         <Filter
           queryFilter={queryFilter}
           changeFilter={changeFilter}
-          resetFilter={resetFilter}
         />
       </Col>
-      <Col sm="9">
+      <Col sm="12" md="9">
         <ActiveFilterList queryFilter={queryFilter} />
 
         <Row>
           <ul className="card_list">
             {
-              beers.map((beer) => (
-                <Col key={beer.id} sm="4">
+              beers.map((beer, index) => (
+                <Col key={index} sm="12" md="6" lg="4">
                   <BeerCard beer={beer}/>
                 </Col>
               ))

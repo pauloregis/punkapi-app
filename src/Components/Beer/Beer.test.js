@@ -4,8 +4,8 @@ import chai, { expect } from 'chai';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 import sinonStubPromise from 'sinon-stub-promise';
-import Beer from './Beer';
-import { beer } from './../Utils/tests/beer';
+import Beer from './index';
+import { beer } from './../../Utils/tests/beer';
 import { MemoryRouter } from 'react-router-dom'
 
 chai.use(sinonChai);

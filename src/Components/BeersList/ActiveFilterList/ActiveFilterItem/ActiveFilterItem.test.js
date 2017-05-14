@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { expect } from 'chai';
-import ActiveFilterItem from './ActiveFilterItem';
+import ActiveFilterItem from './';
 
 describe('<ActiveFilterItem />', () => {
 

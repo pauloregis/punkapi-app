@@ -3,6 +3,7 @@
   border-radius: 3px;
   box-shadow: 0 2px 5px 0 rgba(0,0,0,.08);
   margin-top: 15px;
+  margin-bottom: 30px;
 }
 
 .filter__item {
@@ -19,6 +20,24 @@
   }
   .rc-slider-step, .rc-slider-track, .rc-slider-rail {
     height: 2px;
+  }
+}
+
+.filter__item-ibu {
+  .rc-slider-handle {
+    background: #FF5959;
+  }
+}
+
+.filter__item-ebc {
+  .rc-slider-handle {
+    background: #78C850;
+  }
+}
+
+.filter__item-brewed {
+  .rc-slider-handle {
+    background: #C183C1;
   }
 }
 

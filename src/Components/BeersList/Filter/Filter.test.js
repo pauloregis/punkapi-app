@@ -1,8 +1,14 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
-import { expect } from 'chai';
-import Filter from './Filter';
+import chai, { expect } from 'chai';
+import Filter from './index';
+import sinon from 'sinon';
 import SliderWithTooltip from './SliderWithTooltip';
+import sinonChai from 'sinon-chai';
+import sinonStubPromise from 'sinon-stub-promise';
+
+chai.use(sinonChai);
+sinonStubPromise(sinon);
 
 describe('<Filter />', () => {
 
@@ -15,7 +21,7 @@ describe('<Filter />', () => {
   });
 
   it('should render <SliderWithTooltip/> Component', () => {
-    const resetFilter = jest.fn(() => {});
+    const changeFilter = jest.fn(() => {});
     const queryFilter = {
       page: 1,
       per_page: 6,
@@ -30,12 +36,12 @@ describe('<Filter />', () => {
     };
 
     const wrapper = mount(
-      <Filter resetFilter={resetFilter} queryFilter={queryFilter} />
+      <Filter changeFilter={changeFilter} queryFilter={queryFilter} />
     );
 
     wrapper.find('button').simulate('click');
 
-    expect(resetFilter.mock.calls.length).to.be.equal(1);
+    expect(changeFilter.mock.calls.length).to.be.equal(1);
   });
 
 });

@@ -12,7 +12,7 @@ global.fetch = require('node-fetch');
 
 describe('<App />', () => {
 
-  it.skip('calls componentDidMount', () => {
+  it('calls componentDidMount', () => {
     const componentDidMountSpy = sinon.spy(App.prototype, 'componentDidMount');
 
     mount(
@@ -24,7 +24,8 @@ describe('<App />', () => {
     expect(componentDidMountSpy).to.have.been.calledOnce;
   });
 
-  it('should render a cards list with 6 items', () => {
+  it('should render a cards list with 12 items when click on button-loading_more button', (done) => {
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
     const res = {
       json: () => {
         return new Promise((resolve) => {
@@ -43,7 +44,69 @@ describe('<App />', () => {
       </MemoryRouter>
     );
 
-    expect(wrapper.find('.card_item')).to.have.length(6);
+    setTimeout(function() {
+      wrapper.find('.button-loading_more').simulate('click');
+      setTimeout(function() {
+        expect(wrapper.find('.card_item')).to.have.length(12);
+        fetchedStub.restore();
+        done();
+      }, 50);
+    }, 50);
+
+  });
+
+  it('should call changeFilter ', (done) => {
+    const res = {
+      json: () => {
+        return new Promise((resolve) => {
+          resolve(beers);
+        });
+      }
+    };
+    const componentChangeFilterSpy = sinon.spy(App.prototype, 'changeFilter');
+    const fetchedStub = sinon.stub(global, 'fetch').returns(
+      new Promise((resolve) => {
+        resolve(res)
+      })
+    );
+    const wrapper = mount(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
+
+    setTimeout(function() {
+      wrapper.find('.button-reset').simulate('click');
+      expect(componentChangeFilterSpy).to.have.been.calledOnce;
+      fetchedStub.restore();
+      done();
+    }, 50);
+
+  });
+
+  it('should call handleSearch when click on search button', () => {
+    const res = {
+      json: () => {
+        return new Promise((resolve) => {
+          resolve(beers);
+        });
+      }
+    };
+    const fetchedStub = sinon.stub(global, 'fetch').returns(
+      new Promise((resolve) => {
+        resolve(res)
+      })
+    );
+    const handleSearchSpy = sinon.spy(App.prototype, 'handleSearch');
+    const wrapper = mount(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
+
+    wrapper.find('input').simulate('keyUp', { key: 'Enter', which: 13, target: { value: 'hello' } });
+
+    expect(handleSearchSpy).to.have.been.calledOnce;
     fetchedStub.restore();
   });
 });

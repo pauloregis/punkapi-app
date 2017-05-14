@@ -2,7 +2,8 @@
   background-color: #fff;
   border-radius: 3px;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.08);
-  margin-top: 15px; }
+  margin-top: 15px;
+  margin-bottom: 30px; }
 
 .filter__item, .filter__item-search {
   border-top: 1px solid rgba(0, 0, 0, 0.15);
@@ -15,6 +16,15 @@
     background-color: rgba(0, 0, 0, 0.75); }
   .filter__item .rc-slider-step, .filter__item-search .rc-slider-step, .filter__item .rc-slider-track, .filter__item-search .rc-slider-track, .filter__item .rc-slider-rail, .filter__item-search .rc-slider-rail {
     height: 2px; }
+
+.filter__item-ibu .rc-slider-handle {
+  background: #FF5959; }
+
+.filter__item-ebc .rc-slider-handle {
+  background: #78C850; }
+
+.filter__item-brewed .rc-slider-handle {
+  background: #C183C1; }
 
 .filter__item-search input {
   width: 100%;

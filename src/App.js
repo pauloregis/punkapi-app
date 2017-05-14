@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import Container from './Components/Container';
 
+import history from './history';
+
 import './App.css';
 
 const qs = require('qs');
@@ -11,6 +13,7 @@ class App extends Component {
     super(props);
     this.state = {
       beers: [],
+      isLoading: true,
       queryFilter: {
         page: 1,
         per_page: 6,
@@ -21,11 +24,15 @@ class App extends Component {
         beersLength: 0
       }
     };
+
+    this.pageOptionsDefault = { page: 1, per_page: 6 };
   }
 
-  listBeers( options = { page: 1, per_page: 6 } ) {
+  listBeers( options = this.pageOptionsDefault ) {
     let currentBeers, nextBeers;
     const optionStr = qs.stringify(options);
+
+    this.setState({ isLoading: true });
 
     fetch('https://api.punkapi.com/v2/beers' + (options ? ['?', optionStr].join('') : ''))
       .then((res) => {
@@ -47,33 +54,29 @@ class App extends Component {
       });
   }
 
-  handleSearch(beer_name) {
-    const nextQueryFilter = Object.assign(this.state.queryFilter, { beer_name, page: 1 });
+  handleSearch(beer_name, cb) {
+    const nextQueryFilter = { ...this.state.queryFilter, beer_name, page: 1 };
 
     this.setState({ queryFilter: nextQueryFilter, pagination: { page: 1 } });
     this.listBeers( nextQueryFilter );
+    cb();
   }
 
   handlePagination() {
     const { queryFilter } = this.state;
     const nextPage = ++queryFilter.page;
-    const nextQueryFilter = Object.assign(queryFilter, { page: nextPage });
+    const nextQueryFilter = { ...queryFilter, page: nextPage };
 
     this.setState({ queryFilter: nextQueryFilter, pagination: { page: nextPage } });
     this.listBeers( nextQueryFilter );
   }
 
   changeFilter(query) {
-    const nextQueryFilter = Object.assign(this.state.queryFilter, query);
-    const resetPaginationQuery = Object.assign(nextQueryFilter, { page: 1 });
+    const nextQueryFilter = (Object.keys(query).length !== 0) ? { ...this.state.queryFilter, query } : this.pageOptionsDefault;
+    const resetPaginationQuery = { ...nextQueryFilter, page: 1 };
 
     this.setState({ queryFilter: resetPaginationQuery, pagination: { page: 1 } });
     this.listBeers( resetPaginationQuery );
-  }
-
-  resetFilter() {
-    this.setState({ queryFilter: { page: 1, per_page: 6 }, pagination: { page: 1 } });
-    this.listBeers( { page: 1, per_page: 6 } );
   }
 
   componentDidMount() {
@@ -85,9 +88,8 @@ class App extends Component {
       <Container
         {...this.state}
         changeFilter={(query) => ( this.changeFilter(query) )}
-        resetFilter={(e) => ( this.resetFilter(e) )}
         handlePagination={(e) => ( this.handlePagination(e) )}
-        handleSearch={(e) => ( this.handleSearch(e) )}
+        handleSearch={(beer_name, cb) => ( this.handleSearch(beer_name, () => history.push('/')) )}
       />
     );
   }

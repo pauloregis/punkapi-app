@@ -1,9 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { expect } from 'chai';
-import BeersList from './BeersList';
+import BeersList from './index';
 import BeerCard from './BeerCard';
-import { beer } from './../Utils/tests/beer';
+import { beer } from './../../Utils/tests/beer';
 
 describe('<BeersList />', () => {
 

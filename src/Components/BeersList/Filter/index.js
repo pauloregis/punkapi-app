@@ -5,21 +5,21 @@ import SliderWithTooltip from './SliderWithTooltip';
 
 import './Filter.css';
 
-const Filter = ({ queryFilter, changeFilter, resetFilter }) => {
+const Filter = ({ queryFilter, changeFilter }) => {
 
   const sliders = [];
   const resetSlidersAndQueryFilter = (event) => {
     sliders.forEach((slider) => {
       slider.resetSlider();
     });
-    resetFilter(event);
+    changeFilter({});
   };
 
   return (
     <div className="filter_container">
       <div>
         <button
-          className="button-outline"
+          className="button-outline button-reset"
           onClick={(e) => ( resetSlidersAndQueryFilter(e) )}>
           Reset Filter
         </button>
@@ -39,7 +39,7 @@ const Filter = ({ queryFilter, changeFilter, resetFilter }) => {
             changeFilter={changeFilter}
           />
         </div>
-        <div className="filter__item">
+        <div className="filter__item filter__item-ibu">
           <SliderWithTooltip
             title="Taxa de Amargura (IBU)"
             filterType="ibu"
@@ -52,7 +52,7 @@ const Filter = ({ queryFilter, changeFilter, resetFilter }) => {
             changeFilter={changeFilter}
           />
         </div>
-        <div className="filter__item">
+        <div className="filter__item filter__item-ebc">
           <SliderWithTooltip
             title="Taxa de Coloração (EBC)"
             filterType="ebc"
@@ -65,7 +65,7 @@ const Filter = ({ queryFilter, changeFilter, resetFilter }) => {
             changeFilter={changeFilter}
           />
         </div>
-        <div className="filter__item">
+        <div className="filter__item filter__item-brewed">
           <SliderWithTooltip
             title="Data de Fabricação"
             filterType="brewed"

@@ -59,12 +59,12 @@
   border-bottom: 1px dotted rgba(0, 0, 0, 0.2);
   border-top: 1px dotted rgba(0, 0, 0, 0.2); }
 
-.card_item__details span {
+.card_item__details > span {
   font-size: 12px;
   color: black;
-  margin-right: 10px;
+  margin-right: 5px;
   display: inline-block; }
-  .card_item__details span:before {
+  .card_item__details > span:before {
     content: '';
     display: inline-block;
     width: 8px;
@@ -73,6 +73,15 @@
     border-radius: 2px;
     background: #FFDD00;
     margin-right: 5px; }
+
+.card_item__details .card_item__details-ibu:before {
+  background: #FF5959; }
+
+.card_item__details .card_item__details-ebc:before {
+  background: #78C850; }
+
+.card_item__details .card_item__details-brewed:before {
+  background: #C183C1; }
 
 .button_container {
   display: flex;

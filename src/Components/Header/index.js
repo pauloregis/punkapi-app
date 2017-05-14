@@ -3,7 +3,7 @@ import { Container, Navbar, NavbarBrand, Row, Col } from 'reactstrap';
 
 import Search from './Search';
 
-import logo from './../logo.svg';
+import logo from './logo.svg';
 
 const Header = (props) => (
   <div>

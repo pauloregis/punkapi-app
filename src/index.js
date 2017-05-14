@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { HashRouter } from 'react-router-dom';
+import { Router } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
+import history from './history';
 
 ReactDOM.render(
-  <HashRouter>
+  <Router history={history}>
     <App />
-  </HashRouter>,
+  </Router>,
   document.getElementById('root')
 );

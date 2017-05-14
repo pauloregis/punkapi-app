@@ -1,16 +1,11 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import { expect } from 'chai';
-import SliderWithTooltip from './SliderWithTooltip';
-import Slider from 'rc-slider';
-
-const createSliderWithTooltip = Slider.createSliderWithTooltip;
-const Range = createSliderWithTooltip(Slider.Range);
+import SliderWithTooltip from './index';
 
 describe('<SliderWithTooltip />', () => {
 
   it('should render <SliderWithTooltip/> Component', () => {
-    const resetFilter = jest.fn(() => {});
     const changeFilter = jest.fn(() => {});
     const queryFilter = {
       page: 1,
@@ -26,8 +21,7 @@ describe('<SliderWithTooltip />', () => {
     };
 
     const wrapper = shallow(
-      <SliderWithTooltip resetFilter={resetFilter}
-                         title="Taxa de Álcool (ABV)"
+      <SliderWithTooltip title="Taxa de Álcool (ABV)"
                          filterType="abv"
                          propsQuery={['abv_gt', 'abv_lt']}
                          queryFilter={queryFilter}
@@ -39,12 +33,9 @@ describe('<SliderWithTooltip />', () => {
       />
     );
 
-    //wrapper.setState({ value: [20, 30] });
-
     wrapper.find('.range').simulate('change', [35, 45]);
     wrapper.find('.range').simulate('afterChange', [20, 50]);
 
-    console.log(wrapper.debug());
     expect(1).to.be.equal(1);
   });
 
