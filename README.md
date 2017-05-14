@@ -4,7 +4,7 @@ Visualizar em https://desafiofractaltecnologia.herokuapp.com/
 
 ## Up and running
 
-- Clone este repositório: `git clone https://github.com/pauloregis/desafiofrontendcargobr.git`;
+- Clone este repositório: `git clone https://github.com/pauloregis/punkapi-app.git`;
 - Instale as dependências: `npm install`;
 - Execute `npm start` para navegar em `http://localhost:3000`
 
